@@ -15,7 +15,10 @@ app.get('/', (req, res) => {
 })
 
 // api routes
-// app.use('/user', require('./src/controller/user.controller'));
+app.use('/user', require('./src/controller/user.controller'));
+app.use('/language', require('./src/controller/language.controller'));
+app.use('/lesson', require('./src/controller/lesson.controller'));
+
 
 
 // global error handler
