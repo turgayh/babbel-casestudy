@@ -51,7 +51,6 @@ const courseTable = `CREATE TABLE IF NOT EXISTS courses(
     id INT GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(100) NOT NULL,
     user_id INT,
-    img text NOT NULL,
     PRIMARY KEY(id),
     CONSTRAINT fk_customer
        FOREIGN KEY(user_id) 
