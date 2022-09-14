@@ -1,25 +1,24 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-const morgan = require('morgan')
-const errorHandler = require('./src/middleware/error-handle');
-
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const errorHandler = require("./src/middleware/error-handle");
+const { getProfile } = require("./src/middleware/auth");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(morgan('combined'))
+app.use(morgan("combined"));
 
 //health
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 // api routes
-app.use('/user', require('./src/controller/user.controller'));
-app.use('/language', require('./src/controller/language.controller'));
-app.use('/lesson', require('./src/controller/lesson.controller'));
-
-
+app.use("/user", require("./src/controller/user.controller"));
+app.use("/language", require("./src/controller/language.controller"));
+app.use("/lesson", require("./src/controller/lesson.controller"));
+app.use("/course", getProfile, require("./src/controller/course.controller"));
 
 // global error handler
 app.use(errorHandler);

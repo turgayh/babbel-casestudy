@@ -10,7 +10,7 @@ async function createLanguage(params) {
 
     return { ...resUser.rows[0] };
   } catch (error) {
-    throw new error;
+    throw new error();
   }
 }
 async function listAllLanguages() {
@@ -28,7 +28,6 @@ async function listAllLanguages() {
   }
 }
 
-
 async function updateLanguage(params, id) {
   const query = `UPDATE public.languages
 	SET  name='${params["name"]}', code='${params["code"]}'
@@ -43,18 +42,29 @@ async function updateLanguage(params, id) {
 }
 
 async function hardDeleteLanguage(id) {
+  const lessons = `
+  select * from lessons where lang_id = ${id} 
+`;
+  const l = await pool.query(lessons);
+  let lessons_ids = [];
+  l.rows.forEach((val) => {
+    lessons_ids.push(val["id"]);
+  });
+  if (lessons_ids.length === 0) lessons_ids.push(0);
+
   const query = `
   begin;
+    DELETE from course_lessons where course_id IN (${lessons_ids.toString()});
     DELETE from lessons
       WHERE lang_id = ${id};
     DELETE from languages
       WHERE id = ${id};
   commit;
   `;
-  
+  console.log(query);
   try {
-    const res = await pool.query(query);
-    return res.rows[0];
+    await pool.query(query);
+    return;
   } catch (error) {
     throw new Error(error);
   }
@@ -62,12 +72,13 @@ async function hardDeleteLanguage(id) {
 
 async function hardDeleteAllLanguages() {
   const query = `begin;
-  DELETE from languages;
+  DELETE from course_lessons
   DELETE from lessons;
+  DELETE from languages;
   commit;`;
   try {
-    const res = await pool.query(query);
-    return res.rows[0];
+    await pool.query(query);
+    return;
   } catch (error) {
     throw new Error(error);
   }
@@ -95,5 +106,5 @@ module.exports = {
   updateLanguage,
   updateUserField,
   hardDeleteLanguage,
-  hardDeleteAllLanguages
+  hardDeleteAllLanguages,
 };
