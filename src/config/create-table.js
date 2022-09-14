@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS users_photo(
     id INT GENERATED ALWAYS AS IDENTITY,
     user_id INT,
     img text NOT NULL,
+    created_on timestamp not null  default now(),
     PRIMARY KEY(id),
     CONSTRAINT fk_customer
        FOREIGN KEY(user_id) 
@@ -57,12 +58,24 @@ const courseTable = `CREATE TABLE IF NOT EXISTS courses(
        REFERENCES users(id)
  );`;
 
+
+ const courseLessonsTable = `
+ CREATE TABLE course_lessons (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    lesson_id integer not null references lessons(id),
+    course_id integer not null references courses(id),
+    created_on timestamp not null  default now()
+  );
+  
+ `
+
 const createTable = async () => {
   await pool.query(usersTable);
   await pool.query(usersPhotoTable);
   await pool.query(languagesTable);
   await pool.query(lessonsTable);
   await pool.query(courseTable);
+  await pool.query(courseLessonsTable);
 };
 
 createTable();
