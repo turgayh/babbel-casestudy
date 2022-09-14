@@ -46,15 +46,27 @@ async function updateUserInfo(params, id) {
 }
 
 async function hardDeleteUser(id) {
+  const courses = `
+    select * from courses where user_id = ${id} 
+`;
+  const c = await pool.query(courses);
+  let course_ids = [];
+  c.rows.forEach((val) => {
+    course_ids.push(val["id"]);
+  });
+  if (course_ids.length === 0) course_ids.push(0);
   const query = `begin;
+  DELETE from course_lessons where course_id IN (${course_ids.toString()});
+  DELETE from courses where id IN (${course_ids.toString()});
   DELETE from users_photo
     WHERE user_id = ${id};
   DELETE from users
     WHERE id = ${id};
   commit;`;
   try {
-    const user = await pool.query(query);
-    return user.rows[0];
+    console.log(query);
+    await pool.query(query);
+    return {};
   } catch (error) {
     throw new Error(error);
   }
