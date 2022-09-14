@@ -11,6 +11,7 @@
 ```
 
 ## API Documentation
+# Project: babbel
 
 ### /user/:id
 #### Method: GET
@@ -40,6 +41,12 @@
 |user_id|55|
 
 
+#### 🔑 Authentication basic
+
+|Param|value|Type|
+|---|---|---|
+
+
 
 --------------------------------------------------------------------------------------------⁃
 
@@ -53,6 +60,12 @@
 |Content-Type|Value|
 |---|---|
 |user_id|56|
+
+
+#### 🔑 Authentication basic
+
+|Param|value|Type|
+|---|---|---|
 
 
 
@@ -94,10 +107,16 @@
 |user_id|56|
 
 
+#### 🔑 Authentication basic
+
+|Param|value|Type|
+|---|---|---|
+
+
 
 --------------------------------------------------------------------------------------------⁃
 
-## language/l/all
+## End-point: language/l/all
 #### Method: DELETE
 >```
 >localhost:3000/language/l/all
@@ -176,11 +195,17 @@
 
 ```json
 {
-    "lesson_ids":[13,12,15],
+    "lesson_ids":[1,2,3],
     "name":"test test",
-    "user_id": 56
+    "user_id": 4
 }
 ```
+
+#### 🔑 Authentication basic
+
+|Param|value|Type|
+|---|---|---|
+
 
 
 --------------------------------------------------------------------------------------------⁃
@@ -292,3 +317,4 @@
 ```
 
 
+--------------------------------------------------------------------------------------------⁃

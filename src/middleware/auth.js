@@ -1,14 +1,40 @@
-const { getUserByID } = require("../service/user.service");
+/* eslint-disable no-redeclare */
+/* eslint-disable no-undef */
 
-const getProfile = async (req, res, next) => {
-  const user_id = req.get("user_id");
-  if (isNaN(Number(user_id))) {
-    return res
-      .status(401)
-      .json({ isSuccess: false, data: {}, message: "Add user_id to header!" });
-  }
-  const userInfo = await getUserByID(user_id);
-  if (!userInfo) return res.status(401).end();
-  next();
-};
-module.exports = { getProfile };
+const { checkPassword } = require("../helper/pass-hashing");
+const {  getUserAuthInfo } = require("../service/user.service");
+
+async function auth (req, res, next){
+    var authHeader = req.headers.authorization;
+    if(!authHeader){
+        var err = new Error('You are not authenticated')
+
+        res.setHeader('WWW-Authenticate','Basic');
+        err.status = 401
+        next(err)
+    }
+    var encoded = req.headers.authorization.split(' ')[1];
+    var decoded = new Buffer.from(encoded,'base64').toString();
+    var username = decoded.split(':')[0];
+    var password = decoded.split(':')[1];
+    const userInfo = await getUserAuthInfo(username)
+    if(!userInfo){
+        var err = new Error('User not found')
+
+        res.setHeader('WWW-Authenticate','Basic');
+        err.status = 401
+        next(err)
+    }
+    
+    if(checkPassword(password,userInfo['salt'], userInfo['password'])){
+        next();
+    }else{
+        var err = new Error('You are not authenticated')
+
+        res.setHeader('WWW-Authenticate','Basic');
+        err.status = 401
+        next(err)
+    }
+}
+
+module.exports = { auth };

@@ -18,7 +18,7 @@ function errorHandler(err, req, res, next) {
       return res
         .status(400)
         .json({ message: err.message, isSuccess: false, data: {} });
-    case err.name === "UnauthorizedError":
+    case err.name === "UnauthorizedError" ||  err.message === 'You are not authenticated':
       // jwt authentication error
       return res
         .status(401)

@@ -1,11 +1,15 @@
 const { pool } = require("../config/db");
+const { encryptedPass } = require("../helper/pass-hashing");
 
 /// Create new user
 async function createUser(params) {
   try {
+    const {salt, hashingPass} = encryptedPass(params["password"])
+    console.log(salt);
+    console.log(hashingPass);
     const query = `INSERT INTO public.users(
-         name, lastname, username, password,created_on)
-        VALUES ( '${params["name"]}', '${params["lastname"]}', '${params["username"]}', '${params["password"]}' ,  NOW()) RETURNING id`;
+         name, lastname, username, password,salt,created_on)
+        VALUES ( '${params["name"]}', '${params["lastname"]}', '${params["username"]}', '${hashingPass}' , '${salt}',  NOW()) RETURNING id`;
     const resUser = await pool.query(query);
     const photoQuery = `INSERT INTO public.users_photo(
         user_id, img)
@@ -31,6 +35,17 @@ async function getUserByID(id) {
     throw new Error(error);
   }
 }
+
+async function getUserAuthInfo(username) {
+    const query = `SELECT u.password , u.salt FROM users as u WHERE u.username = '${username}' ;`;
+    console.log(query);
+    try {
+      const user = await pool.query(query);
+      return user.rows[0];
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
 async function updateUserInfo(params, id) {
   const query = `UPDATE public.users
@@ -111,4 +126,5 @@ module.exports = {
   hardDeleteUser,
   updatePicture,
   updateUserField,
+  getUserAuthInfo
 };

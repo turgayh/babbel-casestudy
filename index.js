@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const errorHandler = require("./src/middleware/error-handle");
-const { getProfile } = require("./src/middleware/auth");
+const { auth } = require("./src/middleware/auth");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 app.use("/user", require("./src/controller/user.controller"));
 app.use("/language", require("./src/controller/language.controller"));
 app.use("/lesson", require("./src/controller/lesson.controller"));
-app.use("/course", getProfile, require("./src/controller/course.controller"));
+app.use("/course", auth, require("./src/controller/course.controller"));
 
 // global error handler
 app.use(errorHandler);
