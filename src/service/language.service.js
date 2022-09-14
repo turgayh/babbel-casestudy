@@ -24,7 +24,7 @@ async function listAllLanguages() {
     });
     return result;
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -38,7 +38,7 @@ async function updateLanguage(params, id) {
     const user = await pool.query(query);
     return user.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -56,7 +56,7 @@ async function hardDeleteLanguage(id) {
     const res = await pool.query(query);
     return res.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -69,7 +69,7 @@ async function hardDeleteAllLanguages() {
     const res = await pool.query(query);
     return res.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -86,7 +86,7 @@ async function updateUserField(params, id) {
     const res = await pool.query(query);
     return res.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 module.exports = {

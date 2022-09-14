@@ -10,7 +10,7 @@ async function createLesson(params) {
 
     return { ...resUser.rows[0] };
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 async function listAllLesson() {
@@ -24,7 +24,7 @@ async function listAllLesson() {
     });
     return result;
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -37,7 +37,7 @@ async function hardDeleteLesson(id) {
     const res = await pool.query(query);
     return res.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -54,7 +54,7 @@ async function updateLessonField(params, id) {
     const res = await pool.query(query);
     return res.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 module.exports = {

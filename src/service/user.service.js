@@ -13,7 +13,7 @@ async function createUser(params) {
     const resPhoto = await pool.query(photoQuery);
     return { ...resUser.rows[0], ...resPhoto.rows[0] };
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -28,7 +28,7 @@ async function getUserByID(id) {
     const user = await pool.query(query);
     return user.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -41,7 +41,7 @@ async function updateUserInfo(params, id) {
     const user = await pool.query(query);
     return user.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -56,7 +56,7 @@ async function hardDeleteUser(id) {
     const user = await pool.query(query);
     return user.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -69,7 +69,7 @@ async function updatePicture(params, id) {
     const user = await pool.query(query);
     return user.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 
@@ -89,7 +89,7 @@ async function updateUserField(params, id) {
     const res = await pool.query(query);
     return res.rows[0];
   } catch (error) {
-    return error;
+    throw new Error(error);
   }
 }
 module.exports = {
