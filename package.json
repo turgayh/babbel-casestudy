@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "create-table": "node ./src/config/create-table.js",
-    "dev": "npx nodemon ./app.js",
+    "start": "npx nodemon ./app.js",
     "unit-test": "jest  --runInBand --collectCoverage ./tests/unit "
   },
   "dependencies": {
