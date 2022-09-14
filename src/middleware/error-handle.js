@@ -3,7 +3,6 @@ module.exports = errorHandler;
 
 function errorHandler(err, req, res, next) {
     console.log(err);
-    console.log("HELL");
     
   switch (true) {
     case typeof err === "string":
