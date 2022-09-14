@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "fe3b41e0-776d-4948-8304-c45f612790a7",
+		"name": "babbel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5329616"
+	},
+	"item": [
+		{
+			"name": "/user/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/55",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/language/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/language/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"language",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/course/all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "55",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/course/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"course",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/course/all/:userID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "56",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/course/all/56",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"course",
+						"all",
+						"56"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/55",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/language/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/language/15",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"language",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/lesson/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/lesson/12",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lesson",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/course/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "56",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/course/4",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"course",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "language/l/all",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/language/l/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"language",
+						"l",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"hakan\",\n    \"lastname\" : \"turgddasay\",\n    \"username\":\"fer\",\n    \"password\":\"12345\",\n    \"picture_code\":\"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\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/user",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/language",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"tr\",\n    \"code\":\"CD\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/language",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"language"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/lesson",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lesson_text\":\"tr\",\n    \"lang_id\":15,\n    \"name\":\"test test 2 2 \"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/lesson",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lesson"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user_id",
+						"value": "56",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lesson_ids\":[13,12,15],\n    \"name\":\"test test\",\n    \"user_id\": 56\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/course",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"hakan\",\n    \"lastname\" : \"turgay\",\n    \"username\":\"sddaddddcsdasfdsd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/user/32",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"32"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/language/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\":\"tr\",\n    \"name\" : \"turgay\",\n    \"username\":\"sddaddddcsdasfdsd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/language/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"language",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"username\":\"der\",\n    \"name\":\"sss\",\n    \"lastname\":\"test test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/user/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/language/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"username\":\"der\",\n    \"name\":\"sss\",\n    \"lastname\":\"test test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/language/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"language",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/lesson/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"der\",\n    \"name\":\"sss\",\n    \"lastname\":\"test test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/lesson/20",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lesson",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/picture/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":2,\n    \"picture_code\":\"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\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/user/picture/37",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"picture",
+						"37"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
